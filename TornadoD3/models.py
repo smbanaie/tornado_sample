@@ -1,6 +1,6 @@
 import peewee
 
-myDB = peewee.MySQLDatabase("project_db", host="127.0.0.1", port=3306, user="root", passwd="",charset='utf8')
+myDB = peewee.MySQLDatabase("project_db", host="127.0.0.1", port=3306, user="root", passwd="123",charset='utf8')
 
 
 class MySQLModel(peewee.Model):
@@ -71,3 +71,8 @@ class User_has_buy(MySQLModel):
     User = peewee.ForeignKeyField(rel_model=User, to_field=User.id)
     Buy = peewee.ForeignKeyField(rel_model=Buy, to_field=Buy.id)
 
+myDB.connect()
+
+
+if __name__=="__main__" : 
+	myDB.create_tables([Message,Note,Buy,User,Admin,Payment,User_has_buy])
